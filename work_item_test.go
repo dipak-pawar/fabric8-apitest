@@ -90,7 +90,7 @@ func TestWorkItem(t *testing.T) {
 						actualState, ok := wi.Attributes["system.state"]
 						require.True(t, ok, "failed to find 'system.state' attribute in work item #%d %s", idx, spew.Sdump(wi))
 						require.Equal(t, expextedState, actualState)
-						t.Log("found open work item with title: %s", wi.Attributes["system.title"])
+						t.Logf("found open work item with title: %s", wi.Attributes["system.title"])
 					}
 				})
 			})
