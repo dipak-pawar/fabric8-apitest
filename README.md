@@ -32,7 +32,7 @@ cumbersome and error prone.
 It is much easier and safer to call a function on a client object for the
 service under test. That has proper argument types and return types that you can
 inspect much easier than some blob. The client then converts the function call
-behind the scenes into the proper HTTP command an executes it.
+behind the scenes into the proper HTTP command and executes it.
 
 
 ## 1. Prepare
