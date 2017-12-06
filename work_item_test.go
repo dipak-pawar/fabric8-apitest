@@ -1,5 +1,4 @@
-// +build go1.9
-
+// +build go1.8
 package main
 
 import (
@@ -9,11 +8,10 @@ import (
 	"testing"
 
 	"github.com/davecgh/go-spew/spew"
-
-	"github.com/fabric8-services/fabric8-apitest/auth"
-	"github.com/fabric8-services/fabric8-apitest/notification"
-	"github.com/fabric8-services/fabric8-apitest/tenant"
-	"github.com/fabric8-services/fabric8-apitest/wit"
+	"github.com/fabric8-services/fabric8-apitest/clients/auth"
+	"github.com/fabric8-services/fabric8-apitest/clients/notification"
+	"github.com/fabric8-services/fabric8-apitest/clients/tenant"
+	"github.com/fabric8-services/fabric8-apitest/clients/wit"
 	"github.com/goadesign/goa/client"
 	uuid "github.com/goadesign/goa/uuid"
 	"github.com/stretchr/testify/require"
@@ -64,7 +62,7 @@ func TestWorkItem(t *testing.T) {
 
 	t.Run("as a logged out user", func(t *testing.T) {
 		t.Run("list", func(t *testing.T) {
-			t.Run("open", func(t *testing.T) {
+			t.Run("state=open", func(t *testing.T) {
 				t.Run("ok", func(t *testing.T) {
 					// given
 					path := wit.ListWorkitemsPath(openshiftioSpaceID)
@@ -92,21 +90,10 @@ func TestWorkItem(t *testing.T) {
 						actualState, ok := wi.Attributes["system.state"]
 						require.True(t, ok, "failed to find 'system.state' attribute in work item #%d %s", idx, spew.Sdump(wi))
 						require.Equal(t, expextedState, actualState)
+						t.Log("found open work item with title: %s", wi.Attributes["system.title"])
 					}
 				})
 			})
-			// t.Run("not found", func(t *testing.T) {
-			// 	path := wit.ListWorkitemtypePath(uuid.NewV4())
-			// 	f := filters{}
-			// 	p := pagination{}
-			// 	var ifModifiedSince *string
-			// 	var ifNoneMatch *string
-			// 	resp, err := witClient.ListWorkitems(context.Background(), path, f.Query, f.Area, f.Assignee, f.Expression, f.Iteration, f.ParentExists, f.WorkItemState, f.WorkItemType, p.PageLimit, p.PageOffset, ifModifiedSince, ifNoneMatch)
-			// 	require.Nil(t, err)
-			// 	require.NotNil(t, resp)
-			// 	spew.Dump(resp.Body)
-			// 	require.Equal(t, http.StatusNotFound, resp.StatusCode)
-			// })
 		})
 	})
 

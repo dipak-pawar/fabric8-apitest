@@ -1,5 +1,2 @@
 vendor/*
-auth/*
-notification/* 
-wit/*
-tenant/*
+clients/*
