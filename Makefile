@@ -58,7 +58,7 @@ $(GOAGEN_BIN): $(VENDOR_DIR)
 	cd $(VENDOR_DIR)/github.com/goadesign/goa/goagen && go build -v
 
 .PHONY: generate
-## Generate the client libraries for the various dependencies
+## Generate the client libraries for the various services to test
 generate: $(GOAGEN_BIN)
 	$(GOAGEN_BIN) client -d github.com/fabric8-services/fabric8-wit/design --notool --pkg wit
 	$(GOAGEN_BIN) client -d github.com/fabric8-services/fabric8-tenant/design --notool --pkg tenant
