@@ -1,5 +1,5 @@
 .PHONY: all
-## Executes the prereq, deps, generate, and test targets
+## Executes the deps, generate, and test targets
 all: deps generate test
 
 CUR_DIR=$(shell pwd)
