@@ -41,6 +41,7 @@ func TestWorkItem(t *testing.T) {
 	_ = tenant.Client{}
 	_ = notification.Client{}
 
+
 	openshiftioSpaceID, err := uuid.FromString("020f756e-b51a-4b43-b113-45cec16b9ce9")
 	require.Nil(t, err)
 	//systemSpaceID, err := uuid.FromString("2e0698d8-753e-4cef-bb7c-f027634824a2")
@@ -73,9 +74,10 @@ func TestWorkItem(t *testing.T) {
 					p := pagination{}
 					var ifModifiedSince *string
 					var ifNoneMatch *string
+					var sort *string
 
 					// when
-					resp, err := witClient.ListWorkitems(ctx, path, f.Query, f.Area, f.Assignee, f.Expression, f.Iteration, f.ParentExists, f.WorkItemState, f.WorkItemType, p.PageLimit, p.PageOffset, ifModifiedSince, ifNoneMatch)
+					resp, err := witClient.ListWorkitems(ctx, path, f.Query, f.Area, f.Assignee, f.Expression, f.Iteration, f.ParentExists, f.WorkItemState, f.WorkItemType, p.PageLimit, p.PageOffset, sort, ifModifiedSince, ifNoneMatch)
 
 					// then
 					require.Nil(t, err)
