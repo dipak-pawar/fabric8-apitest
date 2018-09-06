@@ -2,7 +2,7 @@ package auth
 
 import (
 	"testing"
-	"github.com/dipak-pawar/fabric8-apitest/clients/auth"
+	"github.com/fabric8-services/fabric8-apitest/clients/auth"
 	"github.com/goadesign/goa/client"
 	"net/http"
 	"context"
